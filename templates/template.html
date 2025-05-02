@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PortMap Scan Results</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 30px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    h2 { margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <h1>📊 PortMap Scan Report</h1>
+  {{ range $ip, $ports := . }}
+    <h2>{{ $ip }}</h2>
+    <table>
+      <thead>
+        <tr><th>Port</th><th>Status</th><th>Banner</th></tr>
+      </thead>
+      <tbody>
+        {{ range $ports }}
+          <tr>
+            <td>{{ .Port }}</td>
+            <td>{{ if .Open }}Open{{ else }}Closed{{ end }}</td>
+            <td><code>{{ .Banner }}</code></td>
+          </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  {{ end }}
+</body>
+</html>

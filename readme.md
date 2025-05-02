@@ -38,9 +38,9 @@ portmap
 Inside the shell, you can run commands like:
 
 ```
-> portmap quickscan 192.168.1.1
-> portmap scan scanme.nmap.org 22,80,443 --timeout 3
-> portmap bulk ips.txt --ports 21,22,80,443
+> quickscan 192.168.1.1
+> scan scanme.nmap.org 22,80,443 --timeout 3
+> bulk ips.txt --ports 21,22,80,443
 > exit
 ```
 

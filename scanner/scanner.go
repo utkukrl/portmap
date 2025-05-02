@@ -24,7 +24,12 @@ func ScanHostPorts(ip string, ports []int, timeout time.Duration) []utils.PortRe
 		wg.Add(1)
 		go func(index, port int) {
 			defer wg.Done()
-			address := fmt.Sprintf("%s:%d", ip, port)
+			var address string
+			if strings.Contains(ip, ":") {
+				address = fmt.Sprintf("[%s]:%d", ip, port)
+			} else {
+				address = fmt.Sprintf("%s:%d", ip, port)
+			}
 			conn, err := net.DialTimeout("tcp", address, timeout)
 			result := utils.PortResult{Port: port, Open: false}
 
